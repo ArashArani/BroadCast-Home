@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block header %}
+    <title>Admin Panel</title>
+{% endblock %}
+
+{% block body %}
+    <section>
+        <h1>ورود به پنل مدیریت</h1>  
+        <form action="#" method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <input type="text" name="username" placeholder="نام کاربری">
+            <input type="password" name="password" placeholder="رمز عبور">
+            <input type="submit" value="ورود" >
+        </form>
+    </section>
+{% endblock %}

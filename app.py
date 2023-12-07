@@ -1,8 +1,7 @@
 # کتاب خانه های استفاده شده
 
 from flask import Flask 
-
-from flask_sqlalchemy import SQLAlchemy
+from flask_wtf.csrf import CSRFProtect
 
 #فایل ها
 from blueprints.admin import app as admin
@@ -21,9 +20,12 @@ app.register_blueprint(general)
 # کد ها
 
 app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_DATABASE_URI
-db.init_app(app)
 
 app.config["SECRET_KEY"] = SECRET_KEY
+
+db.init_app(app)
+
+csrf = CSRFProtect(app)
 
 with app.app_context():
     db.create_all()
