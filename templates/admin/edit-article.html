@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block header %}
+    <title>Edit Article  </title>
+{% endblock %}
+
+{% block body %}
+    <section >
+        <form action="#" method="post" enctype="multipart/form-data" >
+            <input type="hidden" name="csrf_token" value="{{ csrf_token()}}"/>
+            <label>Cover : <input type="file" name="cover"><img style="width: 250px ;" src="/static/covers/{{article.id}}.jpg"></label> 
+            <input type="text" name="name" value="{{ article.name }}" placeholder="نام مقاله " >
+            <textarea name="description"  placeholder=" توضیحات " >{{ article.description }}</textarea>
+            <input type="submit" value="ثبت تغییرات">
+        </form>
+    </section>
+{% endblock %}

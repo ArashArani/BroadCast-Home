@@ -12,19 +12,18 @@
                 <th>عکس</th>
                 <th>اسم</th>
                 <th>توضیحات</th>
+                <th>ویرایش</th>
             </tr>
             {% for a in articles %}
                 <tr>
                     <td><img style="height: 200px;" src="/static/covers/{{a.id}}.jpg"> </td>
                     <td>{{ a.name | truncate(50) }}</td>
                     <td>{{a.description|truncate(30)}}</td>
-                    <!---<td><a href="/admin/dashboard/edit-product/{{a.id}}"><img src="{{ url_for('static' , filename='themes-image/edit.png') }}"></a></td> -->
+                    <td><a href="/admin/dashboard/edit-article/{{a.id}}"> ویرایش </a></td> 
                 </tr>
             {% endfor %}
         </table>
     </section>
-
-
     <section >
         <h1>اضافه کردن مقاله جدید</h1>
         <form action="#" method="post" enctype="multipart/form-data" >

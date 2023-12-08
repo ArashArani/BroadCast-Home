@@ -1,7 +1,6 @@
 # کتاب خانه ها 
 
-from flask import Blueprint , session , request , abort , redirect , render_template , flash
-
+from flask import Blueprint , session , request , abort , redirect , render_template , flash , url_for
 #فایل ها 
 from models.article import Article
 from models.exprience import Experience
@@ -58,3 +57,21 @@ def articles ():
         flash('مقاله جدید با موفقیت اضافه شد ')
         return redirect('/admin/dashboard')
 
+@app.route('/admin/dashboard/edit-article/<id>' , methods = ["GET","POST"])
+def edit_article(id):
+    article = Article.query.filter(Article.id == id).first_or_404()
+    if request.method == "GET":
+        return render_template("/admin/edit-article.html", article = article)
+    else :
+        name = request.form.get("name",None)
+        description = request.form.get("description",None)
+        file = request.files.get('cover', None)
+
+        article.name = name
+        article.description = description
+        
+        if file.filename != "":
+            file.save(f'static/covers/{article.id}.jpg')
+        db.session.commit()
+        flash(' وضعیت مقاله با موفقیت تغییر کرد ')
+        return redirect('/admin/dashboard/article')
