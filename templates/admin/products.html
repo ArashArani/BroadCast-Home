@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block header %}
+    <title> مدیریت محصولات</title>
+{% endblock %}
+
+{% block body %}
+
+    <section >
+        <table>
+        <h1 >مدیریت محصولات</h1>
+            <tr>
+                <th>عکس</th>
+                <th>اسم</th>
+                <th>توضیحات</th>
+                <th>تعداد </th>
+                <th>قیمت</th>
+                <th>فعال</th>
+                <th>ویرایش</th>
+            </tr>
+            {% for p in product %}
+                <tr>
+                    <td><img style="height: 200px;" src="/static/covers/product/{{p.id}}.jpg"> </td>
+                    <td>{{ p.name | truncate(50) }}</td>
+                    <td>{{ p.description|truncate(30)}}</td>
+                    <td>{{ p.quantity}}</td>
+                    <td>{{ p.price }}</td>
+                    <td>{{ "Yes" if  p.active == 1 else "No" }}</td>
+                    <td><a href="/admin/dashboard/edit-product/{{p.id}}"> ویرایش </a></td> 
+                </tr>
+            {% endfor %}
+        </table>
+    </section>
+    <section >
+        <h1>اضافه کردن محصول جدید</h1>
+        <form action="#" method="post" enctype="multipart/form-data" >
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <label >عکس محصول :<input style="border: none;" type="file" name="cover" > </label>
+            <input  type="text" name="name" placeholder="نام محصول ">
+            <textarea name="description" placeholder=" توضیحات " ></textarea>
+            <input type="number" name="quantity" placeholder="تعداد">
+            <input type="number" name="price" placeholder="قیمت">
+            <label>فعال: <input type="checkbox" value="1" name="active"></label>
+
+            <input  type="submit" value="ثبت">
+        </form>
+    </section>
+{% endblock %}

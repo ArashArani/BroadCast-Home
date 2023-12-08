@@ -1,12 +1,21 @@
 # کتاب خانه ها 
-import os
+
 from flask import Blueprint , session , request , abort , redirect , render_template , flash , url_for 
+
 #فایل ها 
+
 from models.article import Article
+
 from models.exprience import Experience
+
 from models.news import News
+
+from models.product import Product
+
 from config import ADMIN_USERNAME , ADMIN_PASSWORD
+
 from extentions import db
+
 #کد ها 
 
 
@@ -19,7 +28,7 @@ def before_request():
         abort(403)
 
 @app.route('/admin/login' , methods = ["POST","GET"])
-def main():
+def login():
     if request.method == "POST":
         username= request.form.get('username',None)
         password= request.form.get('password',None)
@@ -184,3 +193,63 @@ def edit_news(id):
         db.session.commit()
         flash(' وضعیت خبر با موفقیت تغییر کرد ')
         return redirect('/admin/dashboard/news')
+
+
+@app.route('/admin/dashboard/product',methods = ["POST","GET"])
+def product():
+    if request.method == "GET":
+        product = Product.query.all()
+        return render_template("/admin/products.html", product = product)
+    else:
+        name = request.form.get("name",None)
+        description = request.form.get("description",None)
+        file = request.files.get('cover',None)
+        quantity = request.form.get('quantity', None)
+        price = request.form.get('price',None)
+        active = request.form.get("active",None)
+        p = Product(name = name , description = description ,price=price , quantity = quantity)
+
+        if active != None:
+            p.active = 1
+        else:
+            p.active = 0
+        
+
+        db.session.add(p)
+        db.session.commit()
+
+
+        file.save(f'static/covers/product/{p.id}.jpg')
+        flash('محصول جدید با موفقیت اضافه شد ')
+        return redirect('/admin/dashboard')
+
+
+@app.route('/admin/dashboard/edit-product/<id>' , methods = ["GET","POST"])
+def edit_product(id):
+    product = Product.query.filter(Product.id == id).first_or_404()
+    if request.method == "GET":
+        return render_template("/admin/edit-product.html", product = product)
+    else :
+        name = request.form.get("name",None)
+        description = request.form.get("description",None)
+        quantity = request.form.get('quantity', None)
+        price = request.form.get('price',None)
+        active = request.form.get('active',None)
+        file = request.files.get('cover', None)
+
+        product.name = name
+        product.description = description
+        product.quantity = quantity
+        product.price = price
+
+        if active != None :
+            product.active = 1
+        else:
+            product.active = 0            
+        
+        if file.filename != "":
+            file.save(f'static/covers/product/{product.id}.jpg')
+        db.session.commit()
+        flash(' وضعیت محصول با موفقیت تغییر کرد ')
+        return redirect('/admin/dashboard/product')
+

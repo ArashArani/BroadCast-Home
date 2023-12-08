@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block header %}
+    <title>Edit Product  </title>
+{% endblock %}
+
+{% block body %}
+    <section >
+        <form action="#" method="post" enctype="multipart/form-data" >
+            <input type="hidden" name="csrf_token" value="{{ csrf_token()}}"/>
+            <label>Cover : <input type="file" name="cover"><img style="width: 250px ;" src="/static/covers/product/{{product.id}}.jpg"></label> 
+            <input type="text" name="name" value="{{ product.name }}" placeholder="نام محصول " >
+            <textarea name="description"  placeholder=" توضیحات " >{{ product.description }}</textarea>
+            <input type="number" name="quantity" placeholder="تعداد" value="{{ product.quantity }}">
+            <input type="number" name="price" placeholder="قیمت" value="{{product.price}}">
+            <input type="submit" value="ثبت تغییرات">
+        </form>
+    </section>
+{% endblock %}
