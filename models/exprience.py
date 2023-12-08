@@ -10,4 +10,4 @@ class Experience(db.Model):
     id = Column(Integer , primary_key= True)
     name = Column(VARCHAR, unique=True, index=True , nullable=False)
     description = Column(VARCHAR, unique=True, index=True , nullable=False)
-
+    active = Column(INTEGER,nullable=False,)

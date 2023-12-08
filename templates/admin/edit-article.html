@@ -10,6 +10,7 @@
             <label>Cover : <input type="file" name="cover"><img style="width: 250px ;" src="/static/covers/{{article.id}}.jpg"></label> 
             <input type="text" name="name" value="{{ article.name }}" placeholder="نام مقاله " >
             <textarea name="description"  placeholder=" توضیحات " >{{ article.description }}</textarea>
+            <label>فعال:<input type="checkbox" value="1" name="active" checked {{"checked" if article.active == 1 }}></label>
             <input type="submit" value="ثبت تغییرات">
         </form>
     </section>

@@ -12,6 +12,7 @@
                 <th>عکس</th>
                 <th>اسم</th>
                 <th>توضیحات</th>
+                <th>فعال</th>
                 <th>ویرایش</th>
             </tr>
             {% for a in articles %}
@@ -19,6 +20,7 @@
                     <td><img style="height: 200px;" src="/static/covers/{{a.id}}.jpg"> </td>
                     <td>{{ a.name | truncate(50) }}</td>
                     <td>{{a.description|truncate(30)}}</td>
+                    <td>{{ "Yes" if  a.active == 1 else "No" }}</td>
                     <td><a href="/admin/dashboard/edit-article/{{a.id}}"> ویرایش </a></td> 
                 </tr>
             {% endfor %}
@@ -31,6 +33,7 @@
             <label >عکس مقاله :<input style="border: none;" type="file" name="cover" > </label>
             <input  type="text" name="name" placeholder="نام محصول ">
             <textarea name="description" placeholder=" توضیحات " ></textarea>
+            <label>فعال: <input type="checkbox" value="1" name="active"></label>
             <input  type="submit" value="ثبت">
         </form>
     </section>

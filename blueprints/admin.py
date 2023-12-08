@@ -46,8 +46,12 @@ def articles ():
         name = request.form.get("name",None)
         description = request.form.get("description",None)
         file = request.files.get('cover',None)
-
+        active = request.form.get('active', None)
         a = Article(name = name , description = description )
+        if active == None :
+            a.active = 0
+        else :
+            a.active = 1
 
         db.session.add(a)
         db.session.commit()
@@ -65,10 +69,15 @@ def edit_article(id):
     else :
         name = request.form.get("name",None)
         description = request.form.get("description",None)
+        active = request.form.get("active",None)
         file = request.files.get('cover', None)
 
         article.name = name
         article.description = description
+        if active == None :
+            article.active = 0
+        else :
+            article.active = 1
         
         if file.filename != "":
             file.save(f'static/covers/{article.id}.jpg')

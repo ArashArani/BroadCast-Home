@@ -13,4 +13,5 @@ class Product(db.Model):
     quantity=Column(Integer,nullable=False , index=True)
     price=Column(String ,nullable=False, index=True)
     date_created = Column(String(15), default=get_current_time)
+    active = Column(INTEGER,nullable=False,)
 
