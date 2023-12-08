@@ -9,6 +9,6 @@ from models.user import User
 
 app = Blueprint('user',__name__)
 
-@app.route('/user')
+@app.route('/user/login')
 def user():
     return ' user '
