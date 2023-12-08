@@ -11,7 +11,9 @@ class User(db.Model, UserMixin):
     id = Column(Integer , primary_key= True)
     username=Column(String,unique=True,nullable=False,index=True)
     password=Column(String ,nullable=False,index=True)
-    phone=Column(String (11),nullable=False , index=True)
-    address=Column(String ,nullable=False, index=True)
-    date_created = Column(String(15), default=get_current_time)
+    phone=Column(String (11),nullable=False , index=True , unique=True)
+    gmail = Column(String , unique=True , nullable=True)
+    first_name = Column(String,index=True , nullable=True)
+    last_name = Column(String,index=True,nullable=True)
+    address=Column(String , index=True , nullable=True)
 

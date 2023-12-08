@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block header %}
+    <title> مدیریت کاربران</title>
+{% endblock %}
+
+{% block body %}
+
+    <section >
+        <table>
+        <h1 >مدیریت کاربران</h1>
+            <tr>
+                <th>آیدی</th>
+                <th>نام کاربری</th>
+                <th>تلفن</th>
+                <th>اطلاعات تکمیلی</th>
+            </tr>
+            {% for u in user %}
+                <tr>
+                    <td>{{ u.id }}</td>
+                    <td>{{ u.username }}</td>
+                    <td>{{ u.phone }}</td>
+                    <td><a href="/admin/dashboard/user-info/{{u.id}}"> اطلاعات </a></td> 
+                </tr>
+            {% endfor %}
+        </table>
+    </section>
+
+{% endblock %}

@@ -12,6 +12,8 @@ from models.news import News
 
 from models.product import Product
 
+from models.user import User
+
 from config import ADMIN_USERNAME , ADMIN_PASSWORD
 
 from extentions import db
@@ -253,3 +255,12 @@ def edit_product(id):
         flash(' وضعیت محصول با موفقیت تغییر کرد ')
         return redirect('/admin/dashboard/product')
 
+@app.route('/admin/dashboard/user',methods=["GET"])
+def user():
+    user = User.query.all()
+    return render_template('/admin/user.html',user=user)
+
+@app.route('/admin/dashboard/user/<id>' , methods = ["GET"])
+def user_info(id):
+    user = User.query.filter(User.id == id).first_or_404()
+    return render_template('/admin/user-info.html', user = user)
