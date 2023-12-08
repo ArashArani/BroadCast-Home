@@ -1,6 +1,6 @@
 # کتاب خانه ها 
-
-from flask import Blueprint , session , request , abort , redirect , render_template , flash , url_for
+import os
+from flask import Blueprint , session , request , abort , redirect , render_template , flash , url_for 
 #فایل ها 
 from models.article import Article
 from models.exprience import Experience
@@ -56,8 +56,7 @@ def articles ():
         db.session.add(a)
         db.session.commit()
 
-
-        file.save(f'static/covers/{a.id}.jpg')
+        file.save(f'static/covers/article/{a.id}.jpg') 
         flash('مقاله جدید با موفقیت اضافه شد ')
         return redirect('/admin/dashboard')
 
@@ -80,7 +79,7 @@ def edit_article(id):
             article.active = 1
         
         if file.filename != "":
-            file.save(f'static/covers/{article.id}.jpg')
+            file.save(f'static/covers/article/{article.id}.jpg')
         db.session.commit()
         flash(' وضعیت مقاله با موفقیت تغییر کرد ')
         return redirect('/admin/dashboard/article')
@@ -107,7 +106,7 @@ def experience ():
         db.session.commit()
 
 
-        file.save(f'static/covers/{e.id}.jpg')
+        file.save(f'static/covers/experience/{e.id}.jpg')
         flash('پروژه جدید با موفقیت اضافه شد ')
         return redirect('/admin/dashboard')
 
@@ -130,7 +129,7 @@ def edit_experience(id):
             experience.active = 1
         
         if file.filename != "":
-            file.save(f'static/covers/{experience.id}.jpg')
+            file.save(f'static/covers/experience/{experience.id}.jpg')
         db.session.commit()
         flash(' وضعیت پروژه با موفقیت تغییر کرد ')
         return redirect('/admin/dashboard/experience')

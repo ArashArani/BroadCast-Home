@@ -7,7 +7,7 @@
     <section >
         <form action="#" method="post" enctype="multipart/form-data" >
             <input type="hidden" name="csrf_token" value="{{ csrf_token()}}"/>
-            <label>Cover : <input type="file" name="cover"><img style="width: 250px ;" src="/static/covers/{{experience.id}}.jpg"></label> 
+            <label>Cover : <input type="file" name="cover"><img style="width: 250px ;" src="/static/covers/experience/{{experience.id}}.jpg"></label> 
             <input type="text" name="name" value="{{ experience.name }}" placeholder="نام پروژه " >
             <textarea name="description"  placeholder=" توضیحات " >{{ experience.description }}</textarea>
             <label>فعال:<input type="checkbox" value="1" name="active" checked {{"checked" if experience.active == 1 }}></label>

@@ -17,7 +17,7 @@
             </tr>
             {% for e in experiences %}
                 <tr>
-                    <td><img style="height: 200px;" src="/static/covers/{{e.id}}.jpg"> </td>
+                    <td><img style="height: 200px;" src="/static/covers/experience/{{e.id}}.jpg"> </td>
                     <td>{{ e.name | truncate(50) }}</td>
                     <td>{{e.description|truncate(30)}}</td>
                     <td>{{ "Yes" if  e.active == 1 else "No" }}</td>
