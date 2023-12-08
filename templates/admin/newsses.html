@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block header %}
+    <title> مدیریت خبر ها</title>
+{% endblock %}
+
+{% block body %}
+
+    <section >
+        <table>
+        <h1 >مدیریت خبر ها</h1>
+            <tr>
+                <th>عکس</th>
+                <th>اسم</th>
+                <th>توضیحات</th>
+                <th>فعال</th>
+                <th>ویرایش</th>
+            </tr>
+            {% for n in news %}
+                <tr>
+                    <td><img style="height: 200px;" src="/static/covers/news/{{n.id}}.jpg"> </td>
+                    <td>{{ n.name | truncate(50) }}</td>
+                    <td>{{n.description|truncate(30)}}</td>
+                    <td>{{ "Yes" if  n.active == 1 else "No" }}</td>
+                    <td><a href="/admin/dashboard/edit-news/{{n.id}}"> ویرایش </a></td> 
+                </tr>
+            {% endfor %}
+        </table>
+    </section>
+    <section >
+        <h1>اضافه کردن خبر جدید</h1>
+        <form action="#" method="post" enctype="multipart/form-data" >
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <label >عکس خبر :<input style="border: none;" type="file" name="cover" > </label>
+            <input  type="text" name="name" placeholder="نام خبر ">
+            <textarea name="description" placeholder=" توضیحات " ></textarea>
+            <label>فعال: <input type="checkbox" value="1" name="active"></label>
+            <input  type="submit" value="ثبت">
+        </form>
+    </section>
+{% endblock %}

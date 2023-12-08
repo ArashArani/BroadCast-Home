@@ -133,3 +133,54 @@ def edit_experience(id):
         db.session.commit()
         flash(' وضعیت پروژه با موفقیت تغییر کرد ')
         return redirect('/admin/dashboard/experience')
+
+
+
+
+@app.route('/admin/dashboard/news',methods = ["POST","GET"])
+def news ():
+    if request.method == "GET":
+        news = News.query.all()
+        return render_template("/admin/newsses.html", news = news)
+    else :
+        name = request.form.get("name",None)
+        description = request.form.get("description",None)
+        file = request.files.get('cover',None)
+        active = request.form.get('active', None)
+        n = News(name = name , description = description )
+        if active == None :
+            n.active = 0
+        else :
+            n.active = 1
+
+        db.session.add(n)
+        db.session.commit()
+
+
+        file.save(f'static/covers/news/{n.id}.jpg')
+        flash('خبر جدید با موفقیت اضافه شد ')
+        return redirect('/admin/dashboard')
+
+@app.route('/admin/dashboard/edit-news/<id>' , methods = ["GET","POST"])
+def edit_news(id):
+    news = News.query.filter(News.id == id).first_or_404()
+    if request.method == "GET":
+        return render_template("/admin/edit-news.html", news = news)
+    else :
+        name = request.form.get("name",None)
+        description = request.form.get("description",None)
+        active = request.form.get("active",None)
+        file = request.files.get('cover', None)
+
+        news.name = name
+        news.description = description
+        if active == None :
+            news.active = 0
+        else :
+            news.active = 1
+        
+        if file.filename != "":
+            file.save(f'static/covers/news/{news.id}.jpg')
+        db.session.commit()
+        flash(' وضعیت خبر با موفقیت تغییر کرد ')
+        return redirect('/admin/dashboard/news')

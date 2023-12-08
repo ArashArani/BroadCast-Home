@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block header %}
+    <title>Edit news  </title>
+{% endblock %}
+
+{% block body %}
+    <section >
+        <form action="#" method="post" enctype="multipart/form-data" >
+            <input type="hidden" name="csrf_token" value="{{ csrf_token()}}"/>
+            <label>Cover : <input type="file" name="cover"><img style="width: 250px ;" src="/static/covers/news/{{news.id}}.jpg"></label> 
+            <input type="text" name="name" value="{{ news.name }}" placeholder="نام خبر " >
+            <textarea name="description"  placeholder=" توضیحات " >{{ news.description }}</textarea>
+            <label>فعال:<input type="checkbox" value="1" name="active" checked {{"checked" if news.active == 1 }}></label>
+            <input type="submit" value="ثبت تغییرات">
+        </form>
+    </section>
+{% endblock %}
