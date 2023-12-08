@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block header %}
+    <title> مدیریت مقالات</title>
+{% endblock %}
+
+{% block body %}
+
+    <section >
+        <table>
+        <h1 >مدیریت مقالات</h1>
+            <tr>
+                <th>عکس</th>
+                <th>اسم</th>
+                <th>توضیحات</th>
+            </tr>
+            {% for a in articles %}
+                <tr>
+                    <td><img style="height: 200px;" src="/static/covers/{{a.id}}.jpg"> </td>
+                    <td>{{ a.name | truncate(50) }}</td>
+                    <td>{{a.description|truncate(30)}}</td>
+                    <!---<td><a href="/admin/dashboard/edit-product/{{a.id}}"><img src="{{ url_for('static' , filename='themes-image/edit.png') }}"></a></td> -->
+                </tr>
+            {% endfor %}
+        </table>
+    </section>
+
+
+    <section >
+        <h1>اضافه کردن مقاله جدید</h1>
+        <form action="#" method="post" enctype="multipart/form-data" >
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <label >عکس مقاله :<input style="border: none;" type="file" name="cover" > </label>
+            <input  type="text" name="name" placeholder="نام محصول ">
+            <textarea name="description" placeholder=" توضیحات " ></textarea>
+            <input  type="submit" value="ثبت">
+        </form>
+    </section>
+{% endblock %}

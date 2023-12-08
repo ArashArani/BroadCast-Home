@@ -1,13 +1,13 @@
 # کتاب خانه ها 
 
-from flask import Blueprint , session , request , abort , redirect , render_template
+from flask import Blueprint , session , request , abort , redirect , render_template , flash
 
 #فایل ها 
 from models.article import Article
 from models.exprience import Experience
 from models.news import News
 from config import ADMIN_USERNAME , ADMIN_PASSWORD
-
+from extentions import db
 #کد ها 
 
 
@@ -36,4 +36,25 @@ def main():
 
 @app.route('/admin/dashboard' , methods = ["GET"])
 def dashboard():
-    return 'dashboard'
+    return render_template('/admin/dashboard.html')
+
+@app.route('/admin/dashboard/article',methods = ["POST","GET"])
+def articles ():
+    if request.method == "GET":
+        articles = Article.query.all()
+        return render_template("/admin/articles.html", articles = articles)
+    else :
+        name = request.form.get("name",None)
+        description = request.form.get("description",None)
+        file = request.files.get('cover',None)
+
+        a = Article(name = name , description = description )
+
+        db.session.add(a)
+        db.session.commit()
+
+
+        file.save(f'static/covers/{a.id}.jpg')
+        flash('مقاله جدید با موفقیت اضافه شد ')
+        return redirect('/admin/dashboard')
+
