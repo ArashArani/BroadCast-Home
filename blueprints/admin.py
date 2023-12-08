@@ -84,3 +84,53 @@ def edit_article(id):
         db.session.commit()
         flash(' وضعیت مقاله با موفقیت تغییر کرد ')
         return redirect('/admin/dashboard/article')
+
+
+
+@app.route('/admin/dashboard/experience',methods = ["POST","GET"])
+def experience ():
+    if request.method == "GET":
+        experiences = Experience.query.all()
+        return render_template("/admin/experiences.html", experiences = experiences)
+    else :
+        name = request.form.get("name",None)
+        description = request.form.get("description",None)
+        file = request.files.get('cover',None)
+        active = request.form.get('active', None)
+        e = Experience(name = name , description = description )
+        if active == None :
+            e.active = 0
+        else :
+            e.active = 1
+
+        db.session.add(e)
+        db.session.commit()
+
+
+        file.save(f'static/covers/{e.id}.jpg')
+        flash('پروژه جدید با موفقیت اضافه شد ')
+        return redirect('/admin/dashboard')
+
+@app.route('/admin/dashboard/edit-experience/<id>' , methods = ["GET","POST"])
+def edit_experience(id):
+    experience = Experience.query.filter(Experience.id == id).first_or_404()
+    if request.method == "GET":
+        return render_template("/admin/edit-experience.html", experience = experience)
+    else :
+        name = request.form.get("name",None)
+        description = request.form.get("description",None)
+        active = request.form.get("active",None)
+        file = request.files.get('cover', None)
+
+        experience.name = name
+        experience.description = description
+        if active == None :
+            experience.active = 0
+        else :
+            experience.active = 1
+        
+        if file.filename != "":
+            file.save(f'static/covers/{experience.id}.jpg')
+        db.session.commit()
+        flash(' وضعیت پروژه با موفقیت تغییر کرد ')
+        return redirect('/admin/dashboard/experience')
