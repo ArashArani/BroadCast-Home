@@ -2,7 +2,7 @@
 
 from flask import Blueprint , request , render_template , redirect , flash , url_for
 
-from flask_login import current_user , login_user 
+from flask_login import current_user , login_user , login_required
 
 from passlib.hash import sha256_crypt
 
@@ -61,6 +61,48 @@ def login():
 
 
 
-@app.route('/user/dashboard')
-def dash():
-    return "Dashboard"
+@app.route('/user/dashboard' , methods=['GET' ,'POST'])
+@login_required
+def dashboard():
+    if request.method == 'GET':
+        flash(' با موفقیت وارد شدید ')
+        return render_template('user/dashboard.html')
+    else: 
+        username = request.form.get('username', None)
+        phone = request.form.get('phone', None)
+        address = request.form.get('address', None)
+        email = request.form.get('email',None)
+        first_name = request.form.get('first_name',None)
+        last_name = request.form.get('last_name',None)
+
+        if current_user.username != username:
+            user = User.query.filter(User.username == username ).first()
+            if user != None:
+                flash(' نام کاربری دیگری انتخاب کنید ')
+                return redirect('/user/dashboard')
+            else:
+                current_user.username = username
+        if current_user.phone != phone:
+            user = User.query.filter(User.phone==phone).first()
+            if user != None:
+                flash("این شماره قبلا در سایت ثبت شده")
+                return redirect('/user/dashboard')
+            else :
+                current_user.phone = phone
+
+        if current_user.email != email:
+            user = User.query.filter(User.email==email).first()
+            if user != None:
+                flash("این ایمیل قبلا در سایت ثبت شده")
+                return redirect('/user/dashboard')
+            else :
+                current_user.email = email
+
+
+        current_user.address = address
+        current_user.first_name = first_name
+        current_user.last_name = last_name
+
+        db.session.commit()
+        flash(' تغییرات با موفقیت ثبت شد ')
+        return redirect('/user/dashboard')
