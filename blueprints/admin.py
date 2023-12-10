@@ -30,7 +30,7 @@ def before_request():
         abort(403)
 
 @app.route('/admin/login' , methods = ["POST","GET"])
-def login():
+def main():
     if request.method == "POST":
         username= request.form.get('username',None)
         password= request.form.get('password',None)

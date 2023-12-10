@@ -1,0 +1,13 @@
+<div >
+    <a  href="{{ url_for('general.product' , id=p.id , name=p.name) }}">
+        <section>
+            <div>    
+                <img src="{{url_for('static',filename='covers/product/'+p.id|string+ '.jpg')}}">   
+                <h3>{{p.name | truncate(40)}}</h3>
+                <p>{{p.description|truncate(60)}}</p>
+                <span >{{p.price}}</span>
+            </div>
+        </section>
+    </a>
+        <a class="add-to-cart" href="/add-to-cart?id={{p.id}}"> افزودن به سبد</a>
+</div>
