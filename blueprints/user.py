@@ -97,8 +97,6 @@ def dashboard():
                 return redirect('/user/dashboard')
             else :
                 current_user.email = email
-
-
         current_user.address = address
         current_user.first_name = first_name
         current_user.last_name = last_name
@@ -106,3 +104,28 @@ def dashboard():
         db.session.commit()
         flash(' تغییرات با موفقیت ثبت شد ')
         return redirect('/user/dashboard')
+
+@app.route('/user/dashboard/chenge-password',methods =["POST","GET"])
+@login_required
+def chenge_password():
+    if request.method == 'GET':
+        return render_template('user/chenge-password.html')
+    else :
+        old_password = request.form.get('old_password',None)
+        new_password1 = request.form.get('new_password1',None)
+        new_password2 = request.form.get('new_password2',None)
+
+        if (sha256_crypt.verify(old_password , current_user.password)) and new_password1 == new_password2:
+            current_user.password = sha256_crypt.encrypt(new_password1)
+            db.session.commit()
+            flash('رمز با موفقیت تغییر کرد')
+            return redirect('/user/dashboard')
+        elif new_password1 != new_password2 :
+            flash('رمز جدیدهای جدید باهم مطابقت ندارند ')
+            return redirect('/user/dashboard')
+        elif sha256_crypt.verify(old_password) != True:
+            flash('رمز عبور قدیمی شما درست نیست')
+            return redirect('/user/dashboard')
+        else:
+            flash('بعذا تلاش کنید')
+            return redirect('/user/dashboard')
