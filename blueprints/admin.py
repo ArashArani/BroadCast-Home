@@ -14,9 +14,11 @@ from models.product import Product
 
 from models.user import User
 
+from models.course import Course
+
 from config import ADMIN_USERNAME , ADMIN_PASSWORD
 
-from extentions import db
+from extentions import db 
 
 #کد ها 
 
@@ -264,3 +266,61 @@ def user():
 def user_info(id):
     user = User.query.filter(User.id == id).first_or_404()
     return render_template('/admin/user-info.html', user = user)
+
+@app.route('/admin/dashboard/course', methods=['POST','GET'])
+def course():
+    if request.method == "GET":
+        course = Course.query.all()
+        return render_template("/admin/course.html", course = course)
+    else:
+        name = request.form.get("name",None)
+        description = request.form.get("description",None)
+        video = request.files.get('video',None)
+        cover = request.files.get('cover',None)
+        price = request.form.get('price',None)
+        active = request.form.get("active",None)
+        c = Course(name = name , description = description,price = price)
+        if active != None:
+            c.active = 1
+        else:
+            c.active = 0
+        
+
+        db.session.add(c)
+        db.session.commit()
+
+        cover.save(f'static/covers/course/{c.id}.jpg')
+        video.save(f'static/video/course/{c.id}.mp4')
+        flash('دوره جدید با موفقیت اضافه شد ')
+        return redirect('/admin/dashboard')
+
+
+@app.route('/admin/dashboard/edit-course/<id>' , methods = ["GET","POST"])
+def edit_course(id):
+    course = Course.query.filter(Course.id == id).first_or_404()
+    if request.method == "GET":
+        return render_template("/admin/edit-course.html", course = course)
+    else :
+        name = request.form.get("name",None)
+        description = request.form.get("description",None)
+        cover = request.files.get('cover', None)
+        price = request.form.get('price',None)
+        active = request.form.get('active',None)
+        video = request.files.get('video', None)
+
+        course.name = name
+        course.description = description
+        course.price = price
+
+        if active != None :
+            course.active = 1
+        else:
+            course.active = 0            
+        
+        if cover.filename != "":
+            cover.save(f'static/covers/product/{course.id}.jpg')
+        if video.filename != "":
+            video.save(f'static/video/course/{course.id}.mp4')
+        db.session.commit()
+        flash(' وضعیت دوره با موفقیت تغییر کرد ')
+        return redirect('/admin/dashboard/course')

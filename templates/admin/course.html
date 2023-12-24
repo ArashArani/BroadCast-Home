@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block header %}
+    <title> مدیریت مقالات</title>
+{% endblock %}
+
+{% block body %}
+<section >
+    <table>
+    <h1 >مدیریت دوره ها </h1>
+        <tr>
+            <th>عکس</th>
+            <th>اسم</th>
+            <th>توضیحات</th>
+            <th>قیمت</th>
+            <th>فعال</th>
+            <th>ویرایش</th>
+        </tr>
+        {% for c in course %}
+            <tr>
+                <td><img style="height: 200px;" src="/static/covers/course/{{c.id}}.jpg"> </td>
+                <td>{{ c.name | truncate(50) }}</td>
+                <td>{{c.description|truncate(30)}}</td>
+                <td>{{c.price}}</td>
+                <td>{{ "Yes" if  c.active == 1 else "No" }}</td>
+                <td><a href="/admin/dashboard/edit-course/{{c.id}}"> ویرایش </a></td> 
+            </tr>
+        {% endfor %}
+    </table>
+</section>
+<section >
+    <h1>اضافه کردن دوره جدید</h1>
+    <form action="#" method="post" enctype="multipart/form-data" >
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <label >عکس دوره :<input style="border: none;" type="file" name="cover" > </label>
+        <label>ویدئو دوره : <input type="file" name="video"></label>
+        <input  type="text" name="name" placeholder="نام دوره ">
+        <textarea name="description" placeholder=" توضیحات " ></textarea>
+        <input type="number" name="price" placeholder="قیمت دوره">
+        <label>فعال: <input type="checkbox" value="1" name="active"></label>
+        <input  type="submit" value="ثبت">
+    </form>
+</section>
+{% endblock %}

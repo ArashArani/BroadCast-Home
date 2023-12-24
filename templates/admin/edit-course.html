@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block header %}
+    <title>Edit course  </title>
+{% endblock %}
+
+{% block body %}
+    <section >
+        <form action="#" method="post" enctype="multipart/form-data" >
+            <input type="hidden" name="csrf_token" value="{{ csrf_token()}}"/>
+            <label>Cover : <input type="file" name="cover"><img style="width: 250px ;" src="/static/covers/course/{{course.id}}.jpg"></label> <br>
+            <label >Video : <input type="file" name="video"> <video style="width: 250px ;" src="/static/video/course/{{course.id}}.mp4" controls ></video> </label> <br> 
+            <input type="text" name="name" value="{{ course.name }}" placeholder="نام محصول " ><br>
+            <textarea name="description"  placeholder=" توضیحات " >{{ course.description }}</textarea><br>
+            <input type="number" name="price" placeholder="قیمت" value="{{course.price}}"><br>
+            <input type="submit" value="ثبت تغییرات"><br>
+        </form>
+    </section>
+{% endblock %}
