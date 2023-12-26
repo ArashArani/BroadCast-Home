@@ -14,12 +14,9 @@ app = Blueprint('general',__name__)
 def main():
     search = request.args.get('search',None)
     products = Product.query.filter(Product.active == 1)
-    if search != None:
-        products = products.filter(Product.name.like(f'% {search} %'))
-
     products = products.order_by(func.random()).all()
     
-    return render_template('main.html' , products = products , search = search)
+    return render_template('main.html' , products = products )
 
 @app.route('/product/<int:id>/<name>')
 def product(id,name):

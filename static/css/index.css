@@ -71,7 +71,7 @@
   }
 
 :root{
-    --bg-color: #0d0e11 ;
+    --bg-color: #0f0f0f ;
     --main-color: #76b8e3 ;
     --secendry-color :#e28ea2;
     
@@ -90,9 +90,11 @@ body{
 }
 
 header{
-  height: 100vh;
-  width: 100vw;
-
+  height: 150px;
+  width: 100px;
+}
+div{
+  display: block;
 }
 .navbar{
   position: absolute;
@@ -106,7 +108,9 @@ header{
 .navbar a{
   color: rgb(241, 241, 241);
 }
-
+.navbar a:hover{
+  color: var(--secendry-color);
+}
 .navbar .logo{
   color: var(--main-color);
   font-size: 2em;
@@ -125,7 +129,12 @@ header{
 
 .navbar .nav-links ul li.active a{
   color: var(--secendry-color);
-  font-weight: bold;
+  font-weight: 900;
+}
+
+.navbar .nav-links ul li.active a:hover{
+  color: var(--main-color);
+  font-weight: 900;
 }
 .navbar .menu-hamburger{
   display: none;
@@ -138,6 +147,83 @@ header{
 .mobile-menu{
   margin-right: 0 ;
 }
+
+h1{
+  color: var(--main-color);
+  font-size: 40px;
+  font-weight: 900;
+}
+h4{
+  color: var(--main-color);
+  font-size: 25px;
+  font-weight: 800;
+}
+h6{
+  color: var(--main-color);
+  font-size: 18px;
+  font-weight: 500;
+}
+.header-animation {
+  display: flex;
+  flex-wrap: wrap-reverse;
+  justify-content: center;
+  align-items: center;
+  max-width: 1100px;
+  margin: auto;
+  padding: 0 10px;
+  background-size: 20px 20px , 20px 20px , 10px 10px , 10px 10px;
+  border-radius: 30px;
+}
+.home-animation h1{
+  padding: 0 5px;
+    box-sizing: border-box;
+}
+.home-animation h4{
+  padding: 0 5px;
+  box-sizing: border-box;
+  margin-top: 7 px;
+}
+.home-animation h6{
+  padding: 0 5px;
+    box-sizing: border-box;
+    margin-top: 13px;
+}
+
+.neon-btn, input[type="submit"] {
+  background: transparent;
+  width: min(263px,100%);
+  display: block;
+  border: 2px solid var(--main-color);
+  font-size: 17px;
+  color: var(--main-color);
+  cursor: pointer;
+  margin: 13px auto auto;
+  border-radius: 10px;
+  text-align: center;
+  box-sizing: border-box;
+  box-shadow: 0 0 3px var(--main-color);
+  text-shadow: 0 0 5px var(--main-color);
+  font-weight: 800;
+}
+.neon-btn a, input[type="submit"] {
+  text-decoration: none;
+  color: var(--main-color);
+  padding: 10px;
+  display: block;
+}
+
+.neon-btn a:hover, input[type="submit"] {
+  text-decoration: none;
+  color: var(--bg-color);
+  background-color: var(--main-color);
+  padding: 10px;
+  display: block;
+  border-radius: 5px;
+  text-shadow: 0 0 5px var(--bg-color);
+  box-shadow: 0 0 3px var(--main-color);
+}
+
+
 @media screen and (max-width : 900px){
   .navbar{
     padding: 0;
