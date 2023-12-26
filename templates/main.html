@@ -1,13 +1,8 @@
 {% extends 'base.html' %}
 {% block header %}
-    <title> فروشگاه AR TECH</title>
+    <title>Broad Cast Home</title>
 {% endblock %}
 {% block body %}
-
-    <section class="products">
-        {% for p in products %}
-            {% include 'parts/product.html'  %}
-        {% endfor %}
-    </section>
+{% include 'parts/header.html' %}
     
 {% endblock %}

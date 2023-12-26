@@ -1,0 +1,180 @@
+@font-face {
+    font-family: Vazirmatn;
+    src: url('../font/Vazirmatn-Thin.woff2') format('woff2');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: Vazirmatn;
+    src: url('../font/Vazirmatn-ExtraLight.woff2') format('woff2');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: Vazirmatn;
+    src: url('../font/Vazirmatn-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: Vazirmatn;
+    src: url('../font/Vazirmatn-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: Vazirmatn;
+    src: url('../font/Vazirmatn-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: Vazirmatn;
+    src: url('../font/Vazirmatn-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: Vazirmatn;
+    src: url('../font/Vazirmatn-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: Vazirmatn;
+    src: url('../font/Vazirmatn-ExtraBold.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: Vazirmatn;
+    src: url('../font/Vazirmatn-Black.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+  }
+
+:root{
+    --bg-color: #0d0e11 ;
+    --main-color: #76b8e3 ;
+    --secendry-color :#e28ea2;
+    
+}
+*{
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+}
+
+
+body{
+  font-family: Vazirmatn;
+  background-color: var(--bg-color);
+}
+
+header{
+  height: 100vh;
+  width: 100vw;
+
+}
+.navbar{
+  position: absolute;
+  padding: 50px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+}
+.navbar a{
+  color: rgb(241, 241, 241);
+}
+
+.navbar .logo{
+  color: var(--main-color);
+  font-size: 2em;
+  font-weight: 900;
+}
+
+.navbar .nav-links ul{
+  display: flex;
+  font-size: 1.2em;
+}
+
+
+.navbar .nav-links ul li{
+  margin: 0 25px;
+}
+
+.navbar .nav-links ul li.active a{
+  color: var(--secendry-color);
+  font-weight: bold;
+}
+.navbar .menu-hamburger{
+  display: none;
+  width: 50px;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+}
+
+.mobile-menu{
+  margin-right: 0 ;
+}
+@media screen and (max-width : 900px){
+  .navbar{
+    padding: 0;
+  }
+  
+  .navbar .logo{
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  }
+  .navbar .menu-hamburger{
+    display: block;
+  }
+  .nav-links{
+    top: 0;
+    right: 0;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.425);
+    backdrop-filter: blur(7px);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: -100%;
+    transition: all 0.5s ease;
+  }
+  .nav-links.mobile-menu{
+    margin-right: 0;
+  }
+  .nav-links ul{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .navbar .nav-links ul li {
+    margin: 12px 0;
+    font-size: 1.5em;
+  }
+}
