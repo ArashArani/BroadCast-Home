@@ -220,8 +220,88 @@ h6{
   display: block;
   border-radius: 5px;
   text-shadow: 0 0 5px var(--bg-color);
-  box-shadow: 0 0 3px var(--main-color);
 }
+.link-section {
+  display: flex;
+  margin: 40px auto 0 auto;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 900px;
+}
+.link-section a {
+  margin: 5px;
+  color: #1c1c1c;
+  text-decoration: none;
+  font-weight: 800;
+  border-radius: 10px;
+  background: rgba(0,145,255,.05);
+  padding: 7px 10px;
+  border: 2px solid rgba(0,145,255,.2);
+}
+.link-section a:hover, .link-section a.active {
+  background: var(--main-color);
+  color: var(--bg-color);
+}
+.link-section a:hover, .link-section a.active:hover {
+  background: var(--main-color);
+  color: var(--bg-color);
+}
+.link-section a:hover, .link-section a.nonactive:hover {
+  background: var(--bg-color);
+  color: var(--main-color);
+  text-shadow: 0 0 5px var(--main-color);
+
+}
+.link-section a {
+  margin: 5px;
+  color: var(--main-color);
+  text-decoration: none;
+  font-weight: 800;
+  border-radius: 10px;
+  background: var(--bg-color);
+  padding: 7px 10px;
+  border: 2px solid var(--main-color);
+}
+.hr-root {
+  height: 30px;
+  width: 98%;
+  max-width: 1100px;
+  margin: 80px auto auto;
+  text-align: center;
+}
+.hr-border {
+  border-top: 2px solid var(--main-color);
+}
+.hr-margin {
+  margin-top: -25px;
+  float: right;
+}
+.hr-margin>h4 {
+  background: var(--bg-color);
+  display: inline;
+  padding: 8px 10px;
+  font-size: 30px;
+  font-weight: 900;
+  color: var(--main-color);
+}
+.hr-more {
+  margin-top: -15px;
+  float: left;
+}
+.hr-more a {
+  background: var(--bg-color);
+  display: inline;
+  padding: 8px 10px;
+  font-size: 20px;
+  font-weight: 850;
+  text-decoration: none;
+  color: var(--main-color);
+}
+.hr-more a:after {
+  content: " \0276F\0276F";
+}
+
+
 
 
 @media screen and (max-width : 900px){
