@@ -20,18 +20,19 @@ def main():
     
     return render_template('main.html' , products = products , courses = courses)
 
-@app.route('/courses')
-def course():
-    courses = Course.query.filter(Course.active==1)
-    courses = courses.order_by(func.random()).all
-    return render_template('course.html',courses=courses)
-
 @app.route('/product/<int:id>/<name>')
 def product(id,name):
     product = Product.query.filter(Product.id == id).filter(Product.name == name).filter(
         Product.active == 1).first_or_404()
     another_products = Product.query.filter(Product.name.like(f'%{product.name[0:3]}%')).order_by(func.random()).limit(3).all()
-    return render_template('/product.html' , product = product ,another_products = another_products)
+    return render_template('/part/product.html' , product = product ,another_products = another_products)
+
+@app.route('/course/<int:id>/<name>')
+def course(id,name):
+    course = Course.query.filter(Course.id == id).filter(Course.name == name).filter(
+        Course.active == 1).first_or_404()
+    another_course = Course.query.order_by(func.random()).limit(3).all()
+    return render_template('/parts/course.html' , course = course ,another_course = another_course)
 
 
 

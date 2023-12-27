@@ -313,13 +313,30 @@ h6{
 }
 .course-box {
   max-width: 290px;
-  background-color: #fff;
-  border: 2px solid rgba(0,0,0,.05);
+  background-color: var(--bg-color);
+  border: 2px solid var(--main-color);
   margin: 10px 15px;
   border-radius: 10px;
   position: relative;
 }
-
+.course-box {
+  max-width: 290px;
+  background-color: var(--bg-color);
+  border: 2px solid var(--main-color);
+  margin: 10px 15px;
+  border-radius: 10px;
+  position: relative;
+}
+.course-cover {
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  width: 100%;
+}
+.course-cover {
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  width: 100%;
+}
 
 
 @media screen and (max-width : 900px){

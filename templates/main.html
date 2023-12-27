@@ -38,8 +38,13 @@
             </div>
     </div>
     <section id="courses" class="course-box">
-        {% for c in courses %}
-            <article class="course-box"></article>
-        {% endfor %}
+        <article class="course-box">
+                {% for c in course %}
+                <a  href="{{ url_for('general.course' , id=c.id , name=c.name) }}">
+                    {%include 'parts/course.html'%}
+                </a>
+                {% endfor %}
+            
+        </article>
     </section>
 {% endblock %}

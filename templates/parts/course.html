@@ -1,0 +1,8 @@
+    <section>
+        <div>    
+            <img class="course-cover" src="{{url_for('static',filename='/covers/course/'+c.id|string+ '.jpg')}}">   
+            <h3>{{c.name | truncate(40)}}</h3>
+            <p>{{c.description|truncate(60)}}</p>
+            <span class="price" >{{c.price}}</span>
+        </div>
+    </section>
