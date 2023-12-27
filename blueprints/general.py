@@ -15,8 +15,10 @@ app = Blueprint('general',__name__)
 def main():
     products = Product.query.filter(Product.active == 1)
     products = products.order_by(func.random()).all()
+    courses = Course.query.filter(Course.active == 1)
+    courses = courses.order_by(func.random()).all
     
-    return render_template('main.html' , products = products )
+    return render_template('main.html' , products = products , courses = courses)
 
 @app.route('/courses')
 def course():

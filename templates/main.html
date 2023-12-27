@@ -36,6 +36,10 @@
             <div class="hr-more">
                 <a href="/courses" title="دوره های آموزشی برودکست">همه دوره ها</a>
             </div>
-        
     </div>
+    <section id="courses" class="course-box">
+        {% for c in courses %}
+            <article class="course-box"></article>
+        {% endfor %}
+    </section>
 {% endblock %}

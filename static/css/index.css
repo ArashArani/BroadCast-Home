@@ -300,7 +300,25 @@ h6{
 .hr-more a:after {
   content: " \0276F\0276F";
 }
-
+.courses-box {
+  max-width: 1300px;
+  margin: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  align-content: space-around;
+  flex-wrap: wrap;
+  flex-flow: wrap;
+  flex-direction: row;
+}
+.course-box {
+  max-width: 290px;
+  background-color: #fff;
+  border: 2px solid rgba(0,0,0,.05);
+  margin: 10px 15px;
+  border-radius: 10px;
+  position: relative;
+}
 
 
 
