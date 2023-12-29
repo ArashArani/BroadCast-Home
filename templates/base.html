@@ -18,15 +18,11 @@
     {% endblock %}
 </body>
 <script>
-    const link = document.querySelector(".link-section");
-    let as = link.querySelectorAll("a")
-    for (let i = 0; i < as.length; i++) {
-        as[i].addEventListener("click",remooove)
-      }
-    function remooove(i){
-        
-            console.log(as[i])
-          
-    }
+    
+    const price = document.querySelectorAll('.price-toman');
+    price.innerText = Number(price.innerText).toLocaleString();
+    price.forEach((item) =>{
+        item.innerText = Number(item.innerText).toLocaleString() + ' تومان ';
+    });
 </script>
 </html>

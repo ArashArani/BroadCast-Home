@@ -279,7 +279,8 @@ def course():
         cover = request.files.get('cover',None)
         price = request.form.get('price',None)
         active = request.form.get("active",None)
-        c = Course(name = name , description = description,price = price)
+        teacher = request.form.get('teacher', None)
+        c = Course(name = name , description = description,price = price,teacher=teacher)
         if active != None:
             c.active = 1
         else:
@@ -307,7 +308,9 @@ def edit_course(id):
         price = request.form.get('price',None)
         active = request.form.get('active',None)
         video = request.files.get('video', None)
+        teacher = request.form.get('teacher', None)
 
+        course.teacher = teacher
         course.name = name
         course.description = description
         course.price = price

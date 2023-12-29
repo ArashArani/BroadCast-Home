@@ -11,6 +11,7 @@
             <th>عکس</th>
             <th>اسم</th>
             <th>توضیحات</th>
+            <th>مدرس</th>
             <th>قیمت</th>
             <th>فعال</th>
             <th>ویرایش</th>
@@ -20,6 +21,7 @@
                 <td><img style="height: 200px;" src="/static/covers/course/{{c.id}}.jpg"> </td>
                 <td>{{ c.name | truncate(50) }}</td>
                 <td>{{c.description|truncate(30)}}</td>
+                <td>{{c.teacher}}</td>
                 <td>{{c.price}}</td>
                 <td>{{ "Yes" if  c.active == 1 else "No" }}</td>
                 <td><a href="/admin/dashboard/edit-course/{{c.id}}"> ویرایش </a></td> 
@@ -35,6 +37,7 @@
         <label>ویدئو دوره : <input type="file" name="video"></label>
         <input  type="text" name="name" placeholder="نام دوره ">
         <textarea name="description" placeholder=" توضیحات " ></textarea>
+        <input type="text" name="teacher" placeholder="نام مدرس">
         <input type="number" name="price" placeholder="قیمت دوره">
         <label>فعال: <input type="checkbox" value="1" name="active"></label>
         <input  type="submit" value="ثبت">

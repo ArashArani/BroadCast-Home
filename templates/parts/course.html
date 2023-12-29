@@ -1,8 +1,18 @@
-    <section>
-        <div>    
-            <img class="course-cover" src="{{url_for('static',filename='/covers/course/'+c.id|string+ '.jpg')}}">   
-            <h3>{{c.name | truncate(40)}}</h3>
-            <p>{{c.description|truncate(60)}}</p>
-            <span class="price" >{{c.price}}</span>
+<article class="course-box">
+    <a href="{{ url_for('general.course' , id=c.id , name=c.name)}}">
+        <img class="course-cover" src="{{url_for('static',filename='covers/course/'+c.id|string+ '.jpg')}}">  
+        <h3 class="course-title">{{c.name}}</h3> 
+        <div class="course-box-desc">
+            {{c.description |truncate(100)}}
+        </div> 
+        <hr>
+        <div class="course-bottom-box">
+            <div class="course-deteail-2">
+                <h5 class="course-teacher">{{c.teacher}}</h5>
+            </div>
+            <div>
+                <div class="course-price price-toman">{{c.price}}</div>
+            </div>
         </div>
-    </section>
+    </a>
+</article>

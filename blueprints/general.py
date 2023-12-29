@@ -11,35 +11,14 @@ from models.course import *
 app = Blueprint('general',__name__)
 
 
-@app.route('/')
+@app.route('/', methods=["GET"])
 def main():
-    products = Product.query.filter(Product.active == 1)
-    products = products.order_by(func.random()).all()
-    courses = Course.query.filter(Course.active == 1)
-    courses = courses.order_by(func.random()).all
-    
-    return render_template('main.html' , products = products , courses = courses)
+    if request.method == "GET":
+        courses = Course.query.filter(Course.active==1).filter(func.random()).all()
+    return render_template('main.html', courses = courses)
 
-@app.route('/product/<int:id>/<name>')
-def product(id,name):
-    product = Product.query.filter(Product.id == id).filter(Product.name == name).filter(
-        Product.active == 1).first_or_404()
-    another_products = Product.query.filter(Product.name.like(f'%{product.name[0:3]}%')).order_by(func.random()).limit(3).all()
-    return render_template('/part/product.html' , product = product ,another_products = another_products)
-
-@app.route('/course/<int:id>/<name>')
+@app.route('/course/<int:id>/<name>',methods=["GET"])
 def course(id,name):
-    course = Course.query.filter(Course.id == id).filter(Course.name == name).filter(
-        Course.active == 1).first_or_404()
-    another_course = Course.query.order_by(func.random()).limit(3).all()
-    return render_template('/parts/course.html' , course = course ,another_course = another_course)
-
-
-
-@app.route('/about')
-def about():
-    return render_template('/about.html')
-
-@app.app_errorhandler(404)
-def page_not_found(error):
-    return render_template('404.html'), 404
+    course = Course.query.filter(Course.id == id).filter(Course.name == name).filter(Course.active==1).first_or_404()
+    another_course = Course.query.filter(Course.name.like(f'%{course.name[0:3]}%')).order_by(func.random()).limit(3).all()
+    return render_template('course.html',course=course,another_course=another_course)

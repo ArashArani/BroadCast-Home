@@ -37,14 +37,9 @@
                 <a href="/courses" title="دوره های آموزشی برودکست">همه دوره ها</a>
             </div>
     </div>
-    <section id="courses" class="course-box">
-        <article class="course-box">
-                {% for c in course %}
-                <a  href="{{ url_for('general.course' , id=c.id , name=c.name) }}">
-                    {%include 'parts/course.html'%}
-                </a>
-                {% endfor %}
-            
-        </article>
+    <section  class="courses-box" id="courses">
+        {% for c in courses %}
+            {% include 'parts/course.html' %}
+        {% endfor %}
     </section>
 {% endblock %}

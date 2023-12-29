@@ -7,11 +7,13 @@
     <section >
         <form action="#" method="post" enctype="multipart/form-data" >
             <input type="hidden" name="csrf_token" value="{{ csrf_token()}}"/>
-            <label>Cover : <input type="file" name="cover"><img style="width: 250px ;" src="/static/covers/course/{{course.id}}.jpg"></label> <br>
-            <label >Video : <input type="file" name="video"> <video style="width: 250px ;" src="/static/video/course/{{course.id}}.mp4" controls ></video> </label> <br> 
-            <input type="text" name="name" value="{{ course.name }}" placeholder="نام محصول " ><br>
-            <textarea name="description"  placeholder=" توضیحات " >{{ course.description }}</textarea><br>
-            <input type="number" name="price" placeholder="قیمت" value="{{course.price}}"><br>
+            <label>Cover : <input type="file" name="cover"><img style="width: 250px ;" src="/static/covers/course/{{course.id}}.jpg"></label> 
+            <label >Video : <input type="file" name="video"> <video style="width: 250px ;" src="/static/video/course/{{course.id}}.mp4" controls ></video> </label>  
+            <input type="text" name="name" value="{{ course.name }}" placeholder="نام محصول " >
+            <textarea name="description"  placeholder=" توضیحات " >{{ course.description }}</textarea>
+            <input type="text" name="teacher" placeholder="نام مدرس" value="{{ course.teacher }}">
+            <input type="number" name="price" placeholder="قیمت" value="{{course.price}}">
+            <label>فعال:<input type="checkbox" value="1" name="active" checked {{"checked" if course.active == 1 }}></label>
             <input type="submit" value="ثبت تغییرات"><br>
         </form>
     </section>

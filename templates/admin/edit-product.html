@@ -12,6 +12,7 @@
             <textarea name="description"  placeholder=" توضیحات " >{{ product.description }}</textarea>
             <input type="number" name="quantity" placeholder="تعداد" value="{{ product.quantity }}">
             <input type="number" name="price" placeholder="قیمت" value="{{product.price}}">
+            <label>فعال:<input type="checkbox" value="1" name="active" checked {{"checked" if product.active == 1 }}></label>
             <input type="submit" value="ثبت تغییرات">
         </form>
     </section>
