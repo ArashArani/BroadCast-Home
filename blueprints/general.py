@@ -14,7 +14,7 @@ app = Blueprint('general',__name__)
 @app.route('/', methods=["GET"])
 def main():
     if request.method == "GET":
-        courses = Course.query.filter(Course.active==1).filter(func.random()).all()
+        courses = Course.query.filter(Course.active==1).order_by(func.random()).limit(6).all()
     return render_template('main.html', courses = courses)
 
 @app.route('/course/<int:id>/<name>',methods=["GET"])

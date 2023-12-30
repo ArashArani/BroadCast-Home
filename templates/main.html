@@ -1,28 +1,15 @@
 {% extends 'base.html' %}
 {% block header %}
-    <title>Broad Cast Home</title>
+    <title>خانه برودکست</title>
 {% endblock %}
 {% block body %}
 {% include 'parts/header.html' %}
-    <section class="header-animation">
-        <div style="text-align: right ;">
-            <h1 class="home-animation"> خانه برودکست ایران اینجاست ...</h1>
-            <h4 class="home-animation">از شروع تا پایان کنار شما هستیم</h4>
-            <h6 class="home-animation">با افتخار با بیش از 25 سال تجربه در این حرفه</h6>
-            <div class="neon-btn"style="width: 180px;margin-right: 5px;">
-                <a href="#" title="از اینجا شروع کن" >از اینجا شروع کن ...</a>
-            </div> 
-        </div>
-        <div style="min-width: 300px ;">
-            <img src="/static/default/1703613325941.png" style="max-width: 570px;width: 100%;">
-        </div>
-    </section>
+{% include 'parts/header-animation.html' %}
     <section class="link-section">
-        <a href="/" title="خانه برادکست ایران" class="active">صفحه اصلی</a>
+        <a href="/" title="خانه برودکست ایران" class="active">صفحه اصلی</a>
         <a href="/courses" title=" دوره های آموزشی" class="nonactive">دوره های آموزشی</a>
-        <a href="/products" title="محصولات برادکست" class="nonactive">محصولات برادکست</a>
-        <a href="/news" title="اخبار برادکست" class="noneactive">اخبار</a>
-        <a href="/expriences" title="تجربه ها" class="noneactive" >تجربه ها</a>
+        <a href="/expriences" title="تجربه ها" class="nonactive">تجربه ها </a>
+        <a href="/news" title="اخبار " class="noneactive">اخبار</a>
     </section>
     <div class="hr-root">
         <div class="hr-border">
@@ -32,7 +19,6 @@
                 دوره های آموزشی
             </h4>
         </div>
-        
             <div class="hr-more">
                 <a href="/courses" title="دوره های آموزشی برودکست">همه دوره ها</a>
             </div>
@@ -42,4 +28,16 @@
             {% include 'parts/course.html' %}
         {% endfor %}
     </section>
+    <div class="hr-root">
+        <div class="hr-border">
+        </div>
+        <div class="hr-margin">
+            <h4>
+                تجربه ها
+            </h4>
+        </div>
+            <div class="hr-more">
+                <a href="/expriences" title="دوره های آموزشی برودکست">همه تجربه ها</a>
+            </div>
+    </div>
 {% endblock %}
