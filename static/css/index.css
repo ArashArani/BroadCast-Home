@@ -71,6 +71,8 @@
   }
 
 :root{
+    --bgmp-color: #020202;
+    --bglp-color: #3d3d3d;
     --bg-color: #0f0f0f ;
     --main-color: #76b8e3 ;
     --secendry-color :#e28ea2;
@@ -84,7 +86,9 @@
   list-style: none;
 }
 
-
+*, *:before, *:after {
+  transition: all 250ms ease-out;
+}
 body{
   font-family: Vazirmatn;
   background-color: var(--bg-color);
@@ -153,6 +157,11 @@ h1{
   color: var(--main-color);
   font-size: 40px;
   font-weight: 900;
+}
+h3 {
+  font-size: 14pt;
+  font-weight: 500;
+  margin: 0;
 }
 h4{
   color: var(--main-color);
@@ -248,9 +257,8 @@ h6{
   color: var(--bg-color);
 }
 .link-section a:hover, .link-section a.nonactive:hover {
-  background: var(--bg-color);
-  color: var(--main-color);
-  text-shadow: 0 0 5px var(--main-color);
+  background: var(--main-color);
+  color: var(--bg-color);
 
 }
 .link-section a {
@@ -370,6 +378,9 @@ hr {
   color: var(--bg-color);
 
 }
+.course-price:hover {
+  background-color: var(--main-color);
+}
 .course-detail-2 {
   display: flex;
   justify-content: center;
@@ -390,8 +401,219 @@ hr {
   float: right;
   color: var(--bg-color);
 }
+.course-teacher:hover {
+  background-color: var(--main-color);
+}
+.blogs-box {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1465px;
+  margin: auto;
+}
+.blog-cover {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 10px;
+}
+.blog-box {
+  max-width: 700px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 0 5px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  position: relative;
+}
+
+.blog-descr {
+  max-width: 370px;
+  margin-right: 7px;
+}
+.blog-descr a {
+  font-size: 13px;
+  color: var(--main-color);
+  margin-top: 5px;
+}
+.blog-descr h3 {
+  font-size: 17px;
+  font-weight: 800;
+  margin: 10px 0;
+}
+.blog-descr p {
+  font-size: 13px;
+  margin: 0;
+  text-align: justify;
+}
+
+.blog-box:hover {
+  border: 2px solid var(--main-color);
+  background: var(--mainlop-color);
+}
+
+.blog-descr a.a {
+  font-size: 13px;
+  color: var(--secendry-color);
+  text-decoration: underline;
+  margin-top: 5px;
+}
+.course-box:hover {
+    border: 2px solid var(--main-color);
+}
 
 
+
+
+
+
+
+
+
+
+
+
+
+footer {
+  background-color: var(--bgmp-color);
+  margin-top: 100px;
+}
+.footer {
+  max-width: 1300px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  padding: 15px 10px 10px;
+  align-items: flex-start;
+  margin: auto;
+}
+.footer section {
+  max-width: 650px;
+  margin-top: 10px;
+}
+.footer h3 {
+  font-weight: 700;
+  font-size: 15pt;
+  margin-bottom: 15px;
+  color: var(--main-color);
+}
+.footer h3:hover{
+  color: var(--secendry-color);
+}
+.link-list a {
+  text-align: right;
+  margin: 10px 0;
+  display: block;
+  color: var(--main-color);
+  font-weight: 300;
+  font-size: 17px;
+}
+.link-list a:hover{
+  color: var(--secendry-color);
+}
+.header-link {
+  border: 2px solid var(--mainlop-color);
+  margin-bottom: 0;
+  border-radius: 10px;
+  width: 170px;
+  direction: ltr;
+  height: 36px;
+  padding: 0 5px;
+}
+.linkbox {
+  margin-top: 10px;
+}
+.icon {
+  max-width: 20px;
+  margin: 4px;
+}
+.header-link>a>div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.flex2 {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+div.flex2 h4:hover{
+  color: var(--secendry-color);
+}
+.flex-box {
+  text-align: center;
+  width: 125px;
+  margin: 5px;
+}
+.inline {
+  display: inline;
+}
+h4 {
+  font-size: 12.5pt;
+  font-weight: 300;
+  margin: 0;
+}
+.header-link .flex2 {
+  padding: 5px;
+}
+.logo-footer {
+  width: 90px;
+  margin-left: 10px;
+  height: 90px;
+  border-radius: 100px;
+}
+p {
+  color: var(--main-color);
+  line-height: 1.5;
+}
+.whatsapp-contact {
+  width: 80px;
+  height: 80px;
+  position: fixed;
+  left: 10px;
+  bottom: 10px;
+  border-radius: 100px;
+  padding: 5px;
+  text-align: center;
+  animation: float 7s ease-in-out infinite;
+  z-index: 101;
+}
+.whatsapp-contact img {
+  width: 70px;
+}
+.whatsapp-tooltip:after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  background: var(--bglp-color);
+  left: 20px;
+  bottom: -5px;
+  transform: rotate(45deg);
+}
+.whatsapp-tooltip {
+  padding: 5px;
+  position: fixed;
+  left: 30px;
+  color: var(--main-color);
+  font-size: 17px;
+  bottom: 195px;
+  background: var(--bglp-color);
+  border-radius: 10px;
+  animation: float 7s ease-in-out infinite;
+}
 @media screen and (max-width : 900px){
   .navbar{
     padding: 0;
@@ -431,4 +653,9 @@ hr {
     margin: 12px 0;
     font-size: 1.5em;
   }
+  .footer section, .footer section .linkbox {
+    width: 100%;
+    margin: auto;
+  }
+  
 }

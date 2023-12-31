@@ -1,0 +1,12 @@
+<article class="blog-box">
+    <a href="{{ url_for('general.experience' , id=e.id , name=e.name)}}">
+        <img class="blog-cover" src="{{url_for('static',filename='covers/experience/'+e.id|string+ '.jpg')}}">  
+        <div class="blog-descr">
+            <a href="{{ url_for('general.experience' , id=e.id , name=e.name)}}">
+                <h3>{{e.name}}</h3>
+                <p>{{e.description | truncate(400)}}</p>
+            </a>
+            <a class="a" href="{{ url_for('general.experience' , id=e.id , name=e.name)}}">ادامه مطلب </a>
+        </div> 
+    </a>
+</article>

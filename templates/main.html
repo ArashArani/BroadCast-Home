@@ -40,4 +40,10 @@
                 <a href="/expriences" title="دوره های آموزشی برودکست">همه تجربه ها</a>
             </div>
     </div>
+    <section class="blogs-box ">
+        {% for e in experiences %}
+            {% include 'parts/experience.html' %}
+        {% endfor %}
+    </section>
+{% include 'parts/footer.html' %}
 {% endblock %}
