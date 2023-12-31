@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block header %}
+    <title>دوره های خانه برودکست</title>
+{% endblock %}
+{% block body %}
+{% include 'parts/header.html' %}
+{% include 'parts/header-animation.html' %}
+    <section class="link-section">
+        <a href="/" title="خانه برودکست ایران" class="nonactive">صفحه اصلی</a>
+        <a href="/courses" title=" دوره های آموزشی" class="active">دوره های آموزشی</a>
+        <a href="/experiences" title="تجربه ها" class="nonactive">تجربه ها </a>
+    </section>
+    <div class="hr-root">
+        <div class="hr-border">
+        </div>
+        <div class="hr-margin">
+            <h4>
+                دوره های آموزشی
+            </h4>
+        </div>
+    </div>
+    <section  class="courses-box" id="courses">
+        {% for c in courses %}
+            {% include 'parts/course.html' %}
+        {% endfor %}
+    </section>
+{% include 'parts/footer.html' %}
+{% endblock %}

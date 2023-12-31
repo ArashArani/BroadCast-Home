@@ -20,6 +20,22 @@ def main():
         experiences = Experience.query.filter(Experience.active ==1).order_by(func.random()).limit(5).all()
     return render_template('main.html', courses = courses , experiences = experiences)
 
+
+@app.route('/courses', methods=["GET"])
+def courses():
+    if request.method == "GET":
+        courses = Course.query.filter(Course.active == 1).all()
+    return render_template('courses.html', courses = courses)
+
+
+@app.route('/experiences', methods=["GET"])
+def experiences():
+    if request.method == "GET":
+        experiences = Experience.query.filter(Experience.active == 1).all()
+    return render_template('experiences.html', experiences = experiences)
+
+
+
 @app.route('/course/<int:id>/<name>',methods=["GET"])
 def course(id,name):
     course = Course.query.filter(Course.id == id).filter(Course.name == name).filter(Course.active==1).first_or_404()

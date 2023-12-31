@@ -8,13 +8,13 @@
             <li><a href="#">محصول ها</a></li>
             <li><a href="#">تجربه ها</a></li>
             {%else%}
-            <li class="active"><a href="#">خانه</a></li>
-            <li><a href="#">دوره ها</a></li>
+            <li class="active"><a href="/">خانه</a></li>
+            <li><a href="/courses">دوره ها</a></li>
+            <li><a href="/experiences">تجربه ها</a></li>
             {% if current_user.is_authenticated %}
-            <li><a href="#">ثبت نام/ورود</a></li>
-            {%endif%}
             <li><a href="#">پنل کاربری</a></li>
-            <li><a href="#">مقاله ها</a></li>
+            {%endif%}
+            <li><a href="/user/login">ثبت نام/ورود</a></li>            
             <li><a href="#">پشتیبانی</a></li>
         {%endif%}
         </ul>
